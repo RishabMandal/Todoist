@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Todo from "./TodoList";
+import TodoList from "./TodoList";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Todo />
+      <TodoList />
     </div>
   );
 }
