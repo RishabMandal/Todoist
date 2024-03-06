@@ -226,8 +226,8 @@ const TodoList = () => {
                           <Button type="submit">Submit</Button>
                         </form>
                       </Form> */}
-                      <Select>
-                        <SelectTrigger className="w-[180px]">
+                      <Select className="outline-none">
+                        <SelectTrigger className="w-[110px] outline-none">
                           <SelectValue placeholder="Priority" />
                         </SelectTrigger>
                         <SelectContent>
