@@ -1,6 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+// import {
+//   Form,
+//   FormControl,
+//   FormDescription,
+//   FormField,
+//   FormItem,
+//   FormLabel,
+//   FormMessage,
+// } from "@/components/ui/form";
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from "@/components/ui/popover";
+// import { toast } from "@/components/ui/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { CalendarForm } from "./CalendarForm";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -45,6 +72,32 @@ const TodoList = () => {
     updatedTodos.splice(index, 1);
     setTodos(updatedTodos);
   };
+
+  // Shadcn ui
+  // const FormSchema = z.object({
+  //   dob: z.date({
+  //     required_error: "A date of birth is required.",
+  //   }),
+  // });
+
+  // const form =
+  //   useForm <
+  //   z.infer <
+  //   typeof FormSchema >>
+  //     {
+  //       resolver: zodResolver(FormSchema),
+  //     };
+
+  // function onSubmit(data) {
+  //   toast({
+  //     title: "You submitted the following values:",
+  //     description: (
+  //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+  //         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+  //       </pre>
+  //     ),
+  //   });
+  // }
 
   return (
     <div className="w-screen max-w-[70rem] bg-white p-10">
@@ -113,6 +166,78 @@ const TodoList = () => {
                   <div>
                     <h3 className="text-lg font-semibold">{todo.title}</h3>
                     <p className="text-gray-500">{todo.description}</p>
+                    <div className="flex flex-row py-2 gap-2">
+                      <CalendarForm />
+                      {/* <Form {...form}>
+                        <form
+                          onSubmit={form.handleSubmit(onSubmit)}
+                          className="space-y-8"
+                        >
+                          <FormField
+                            control={form.control}
+                            name="dob"
+                            render={({ field }) => (
+                              <FormItem className="flex flex-col">
+                                <FormLabel>Date of birth</FormLabel>
+                                <Popover>
+                                  <PopoverTrigger asChild>
+                                    <FormControl>
+                                      <Button
+                                        variant={"outline"}
+                                        className={cn(
+                                          "w-[240px] pl-3 text-left font-normal",
+                                          !field.value &&
+                                            "text-muted-foreground"
+                                        )}
+                                      >
+                                        {field.value ? (
+                                          format(field.value, "PPP")
+                                        ) : (
+                                          <span>Pick a date</span>
+                                        )}
+                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                      </Button>
+                                    </FormControl>
+                                  </PopoverTrigger>
+                                  <PopoverContent
+                                    className="w-auto p-0"
+                                    align="start"
+                                  >
+                                    <Calendar
+                                      mode="single"
+                                      selected={field.value}
+                                      onSelect={field.onChange}
+                                      disabled={(date) =>
+                                        date > new Date() ||
+                                        date < new Date("1900-01-01")
+                                      }
+                                      initialFocus
+                                    />
+                                  </PopoverContent>
+                                </Popover>
+                                <FormDescription>
+                                  Your date of birth is used to calculate your
+                                  age.
+                                </FormDescription>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <Button type="submit">Submit</Button>
+                        </form>
+                      </Form> */}
+                      <Select>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue placeholder="Priority" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="light">Priority 1</SelectItem>
+                          <SelectItem value="dark">Priority 2</SelectItem>
+                          <SelectItem value="dark2">Priority 3</SelectItem>
+                          <SelectItem value="system">Priority 4</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
                   {editIndex === index ? (
                     <button
