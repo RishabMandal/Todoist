@@ -145,30 +145,9 @@ const TodoList = () => {
                     value={inputDescription}
                     onChange={(e) => setInputDescription(e.target.value)}
                   ></textarea>
-                  <hr />
-                  <div className="flex flex-row justify-end pt-3">
-                    <button
-                      className="bg-gray-200 font-semibold px-4 py-2 rounded mr-2"
-                      onClick={() => setEditIndex(null)}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      className="bg-red-500 font-semibold text-white px-4 py-2 rounded mr-2"
-                      onClick={handleAddTodo}
-                    >
-                      Edit Todo
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex flex-row justify-between">
-                  <div>
-                    <h3 className="text-lg font-semibold">{todo.title}</h3>
-                    <p className="text-gray-500">{todo.description}</p>
-                    <div className="flex flex-row py-2 gap-2">
-                      <CalendarForm />
-                      {/* <Form {...form}>
+                  <div className="flex flex-row py-2 gap-2">
+                    <CalendarForm />
+                    {/* <Form {...form}>
                         <form
                           onSubmit={form.handleSubmit(onSubmit)}
                           className="space-y-8"
@@ -226,18 +205,39 @@ const TodoList = () => {
                           <Button type="submit">Submit</Button>
                         </form>
                       </Form> */}
-                      <Select className="outline-none">
-                        <SelectTrigger className="w-[110px] outline-none">
-                          <SelectValue placeholder="Priority" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="light">Priority 1</SelectItem>
-                          <SelectItem value="dark">Priority 2</SelectItem>
-                          <SelectItem value="dark2">Priority 3</SelectItem>
-                          <SelectItem value="system">Priority 4</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    <Select className="outline-none">
+                      <SelectTrigger className="w-[110px] outline-none">
+                        <SelectValue placeholder="Priority" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="light">Priority 1</SelectItem>
+                        <SelectItem value="dark">Priority 2</SelectItem>
+                        <SelectItem value="dark2">Priority 3</SelectItem>
+                        <SelectItem value="system">Priority 4</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <hr />
+                  <div className="flex flex-row justify-end pt-3">
+                    <button
+                      className="bg-gray-200 font-semibold px-4 py-2 rounded mr-2"
+                      onClick={() => setEditIndex(null)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="bg-red-500 font-semibold text-white px-4 py-2 rounded mr-2"
+                      onClick={handleAddTodo}
+                    >
+                      Edit Todo
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-row justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold">{todo.title}</h3>
+                    <p className="text-gray-500">{todo.description}</p>
                   </div>
                   {editIndex === index ? (
                     <button
@@ -274,35 +274,53 @@ const TodoList = () => {
       </ul>
       {viewInputBox ? (
         <div className="border rounded-xl p-3">
-          <input
-            type="text"
-            className="outline-none p-2 pb-0 w-full font-semibold"
-            placeholder="Task name"
-            value={inputTitle}
-            onChange={(e) => setInputTitle(e.target.value)}
-          />
-          <textarea
-            className="outline-none p-2 mb-4 w-full text-sm"
-            rows="1"
-            placeholder="Description"
-            value={inputDescription}
-            onChange={(e) => setInputDescription(e.target.value)}
-          ></textarea>
-          <hr />
-          <div className="flex flex-row justify-end pt-3">
-            <button
-              className="bg-gray-200 font-semibold px-4 py-2 rounded mr-2"
-              onClick={() => setViewInputBox(false)}
-            >
-              Cancel
-            </button>
-            <button
-              className="bg-red-500 font-semibold text-white px-4 py-2 rounded mr-2"
-              onClick={handleAddTodo}
-            >
-              {editIndex !== null ? "Edit Todo" : "Add Task"}
-            </button>
+          <div>
+            <input
+              type="text"
+              className="outline-none p-2 pb-0 w-full font-semibold"
+              placeholder="Task name"
+              value={inputTitle}
+              onChange={(e) => setInputTitle(e.target.value)}
+            />
+            <textarea
+              className="outline-none p-2 mb-4 w-full text-sm"
+              rows="1"
+              placeholder="Description"
+              value={inputDescription}
+              onChange={(e) => setInputDescription(e.target.value)}
+            ></textarea>
+            <div className="flex flex-row py-2 gap-2">
+              <CalendarForm />
+              <Select className="outline-none">
+                <SelectTrigger className="w-[110px] outline-none">
+                  <SelectValue placeholder="Priority" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Priority 1</SelectItem>
+                  <SelectItem value="dark">Priority 2</SelectItem>
+                  <SelectItem value="dark2">Priority 3</SelectItem>
+                  <SelectItem value="system">Priority 4</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
+          <div className="flex flex-row justify-end pt-3">
+            <div>
+              <button
+                className="bg-gray-200 font-semibold px-4 py-2 rounded mr-2"
+                onClick={() => setViewInputBox(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red-500 font-semibold text-white px-4 py-2 rounded mr-2"
+                onClick={handleAddTodo}
+              >
+                {editIndex !== null ? "Edit Todo" : "Add Task"}
+              </button>
+            </div>
+          </div>
+          {/* <hr /> */}
         </div>
       ) : (
         <div
