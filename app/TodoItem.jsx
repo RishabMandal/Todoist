@@ -25,9 +25,11 @@ const TodoItem = ({
   setEditIndex,
   priority,
   setPriority,
+  assignment,
   setAssignment,
   selectedDate,
   setSelectedDate,
+  setEmail,
 }) => {
   return (
     <li key={index} className="">
@@ -68,22 +70,46 @@ const TodoItem = ({
                   <SelectItem value="Priority 4">Priority 4</SelectItem>
                 </SelectContent>
               </Select>
-              <Select
-                className="outline-none"
-                onValueChange={(value) => setAssignment(value)}
-              >
-                <SelectTrigger className="w-[110px] outline-none">
-                  <SelectValue placeholder="Assign" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Assign to partner">
-                    Assign to partner
-                  </SelectItem>
-                  <SelectItem value="Assign someone else">
-                    Assign someone else
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+              <div>
+                <Select
+                  className="outline-none"
+                  onValueChange={(value) => {
+                    setAssignment(value);
+                    // Reset email input when changing assignment type
+                    if (value !== "Assign someone else") {
+                      setEmail("");
+                    }
+                  }}
+                  defaultValue={todo.assignment}
+                >
+                  <SelectTrigger className="outline-none">
+                    <SelectValue placeholder="Assign" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Assign to partner">
+                      Assign to partner
+                    </SelectItem>
+                    <SelectItem value="Assign someone else">
+                      Assign someone else
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                {todo.assignment === "Assign someone else" && (
+                  <div className="mt-2">
+                    <label htmlFor="email" className="block mb-1">
+                      Email:
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={todo?.email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter email"
+                      className="border border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
             <hr />
             <div className="flex flex-row justify-end pt-3">

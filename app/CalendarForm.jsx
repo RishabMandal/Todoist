@@ -2,7 +2,12 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { useEffect } from "react";
 
 export function CalendarForm({ selectedDate, setSelectedDate }) {
   return (
@@ -17,7 +22,11 @@ export function CalendarForm({ selectedDate, setSelectedDate }) {
                   !selectedDate && "text-muted-foreground"
                 }`}
               >
-                {selectedDate ? format(selectedDate, "PPP") : <span>Pick a date</span>}
+                {selectedDate ? (
+                  format(selectedDate, "PPP")
+                ) : (
+                  <span>Pick a date</span>
+                )}
                 <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
               </Button>
             </div>
@@ -27,7 +36,9 @@ export function CalendarForm({ selectedDate, setSelectedDate }) {
               mode="single"
               selected={selectedDate}
               onSelect={setSelectedDate}
-              disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+              disabled={(date) =>
+                date > new Date() || date < new Date("1900-01-01")
+              }
               initialFocus
             />
           </PopoverContent>

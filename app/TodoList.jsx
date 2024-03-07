@@ -16,10 +16,12 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
-  const [priority, setPriority] = useState(null); // State for priority
+  const [priority, setPriority] = useState("Priority 4"); // State for priority
   const [selectedDate, setSelectedDate] = useState(null); // State for selected date
-  const [assignment, setAssignment] = useState(null);
+  const [assignment, setAssignment] = useState("Assign");
   const [editIndex, setEditIndex] = useState(null);
+
+  const [email, setEmail] = useState("");
 
   const [viewInputBox, setViewInputBox] = useState(false);
 
@@ -32,21 +34,30 @@ const TodoList = () => {
           description: inputDescription,
           priority: priority, // Adding priority to the todo object
           date: selectedDate, // Adding selected date to the todo object
+          assignment: assignment,
+          email: email,
         },
       ]);
       setInputTitle("");
       setInputDescription("");
       setPriority(null); // Reset priority after adding todo
       setSelectedDate(null); // Reset selected date after adding todo
+      setAssignment(null); // Reset assignment
     }
   };
+
   // Gaining index of todo to be edited
   const handleEditTodo = (index) => {
     const todoToEdit = todos[index];
     setInputTitle(todoToEdit.title);
     setInputDescription(todoToEdit.description);
+    setPriority(todoToEdit.priority);
+    setAssignment(todoToEdit.assignment);
+    setEmail(todoToEdit.email);
+    setSelectedDate(todoToEdit.selectedDate);
     setEditIndex(index);
   };
+
   // Saving the edited todo
   const handleSaveEditedTodo = (index) => {
     if (inputTitle.trim() !== "" && inputDescription.trim() !== "") {
@@ -56,12 +67,16 @@ const TodoList = () => {
         description: inputDescription,
         priority: priority, // Adding priority to the todo object
         date: selectedDate, // Adding selected date to the todo object
+        assignment: assignment,
+        email: email,
       };
       setTodos(updatedTodos);
       setInputTitle("");
       setInputDescription("");
       setPriority(null); // Reset priority after adding todo
       setSelectedDate(null); // Reset selected date after adding todo
+      setAssignment(null); // Reset assignment
+      setEmail(null); // Reset assignment
       setEditIndex(null);
     }
   };
@@ -97,6 +112,7 @@ const TodoList = () => {
             setAssignment={setAssignment}
             selectedDate={selectedDate} // Pass selected date as prop
             setSelectedDate={setSelectedDate} // Pass selected date as prop
+            setEmail={setEmail} // Pass email as prop
           />
         ))}
       </ul>
@@ -137,19 +153,46 @@ const TodoList = () => {
                   <SelectItem value="Priority 4">Priority 4</SelectItem>
                 </SelectContent>
               </Select>
-              <Select className="outline-none">
-                <SelectTrigger className="w-[110px] outline-none">
-                  <SelectValue placeholder="Assign" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Assign to partner">
-                    Assign to partner
-                  </SelectItem>
-                  <SelectItem value="Assign someone else">
-                    Assign someone else
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+              <div>
+                <Select
+                  className="outline-none"
+                  onValueChange={(value) => {
+                    setAssignment(value);
+                    // Reset email input when changing assignment type
+                    if (value !== "Assign someone else") {
+                      setEmail("");
+                    }
+                  }}
+                  // defaultValue="Assign"
+                >
+                  <SelectTrigger className="outline-none">
+                    <SelectValue placeholder="Assign" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Assign to partner">
+                      Assign to partner
+                    </SelectItem>
+                    <SelectItem value="Assign someone else">
+                      Assign someone else
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                {assignment === "Assign someone else" && (
+                  <div className="mt-2">
+                    <label htmlFor="email" className="block mb-1">
+                      Email:
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter email"
+                      className="border border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div className="flex flex-row justify-end pt-3">
@@ -164,7 +207,7 @@ const TodoList = () => {
                 className="bg-red-500 font-semibold text-white px-4 py-2 rounded mr-2"
                 onClick={handleAddTodo}
               >
-                {editIndex !== null ? "Edit Todo" : "Add Task"}
+                Add Task
               </button>
             </div>
           </div>
