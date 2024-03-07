@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -16,6 +16,9 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
+  const [priority, setPriority] = useState(null); // State for priority
+  const [selectedDate, setSelectedDate] = useState(null); // State for selected date
+  const [assignment, setAssignment] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
 
   const [viewInputBox, setViewInputBox] = useState(false);
@@ -24,10 +27,17 @@ const TodoList = () => {
     if (inputTitle.trim() !== "" && inputDescription.trim() !== "") {
       setTodos([
         ...todos,
-        { title: inputTitle, description: inputDescription },
+        {
+          title: inputTitle,
+          description: inputDescription,
+          priority: priority, // Adding priority to the todo object
+          date: selectedDate, // Adding selected date to the todo object
+        },
       ]);
       setInputTitle("");
       setInputDescription("");
+      setPriority(null); // Reset priority after adding todo
+      setSelectedDate(null); // Reset selected date after adding todo
     }
   };
   // Gaining index of todo to be edited
@@ -44,10 +54,14 @@ const TodoList = () => {
       updatedTodos[editIndex] = {
         title: inputTitle,
         description: inputDescription,
+        priority: priority, // Adding priority to the todo object
+        date: selectedDate, // Adding selected date to the todo object
       };
       setTodos(updatedTodos);
       setInputTitle("");
       setInputDescription("");
+      setPriority(null); // Reset priority after adding todo
+      setSelectedDate(null); // Reset selected date after adding todo
       setEditIndex(null);
     }
   };
@@ -77,6 +91,12 @@ const TodoList = () => {
             handleSaveEditedTodo={handleSaveEditedTodo}
             handleDeleteTodo={handleDeleteTodo}
             setEditIndex={setEditIndex}
+            priority={priority} // Pass priority as prop
+            setPriority={setPriority}
+            assignment={assignment}
+            setAssignment={setAssignment}
+            selectedDate={selectedDate} // Pass selected date as prop
+            setSelectedDate={setSelectedDate} // Pass selected date as prop
           />
         ))}
       </ul>
@@ -98,16 +118,36 @@ const TodoList = () => {
               onChange={(e) => setInputDescription(e.target.value)}
             ></textarea>
             <div className="flex flex-row py-2 gap-2">
-              <CalendarForm />
-              <Select className="outline-none">
+              <CalendarForm
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+              />
+              <Select
+                className="outline-none"
+                onValueChange={(value) => setPriority(value)}
+                defaultValue="Priority 4"
+              >
                 <SelectTrigger className="w-[110px] outline-none">
                   <SelectValue placeholder="Priority" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="light">Priority 1</SelectItem>
-                  <SelectItem value="dark">Priority 2</SelectItem>
-                  <SelectItem value="dark2">Priority 3</SelectItem>
-                  <SelectItem value="system">Priority 4</SelectItem>
+                  <SelectItem value="Priority 1">Priority 1</SelectItem>
+                  <SelectItem value="Priority 2">Priority 2</SelectItem>
+                  <SelectItem value="Priority 3">Priority 3</SelectItem>
+                  <SelectItem value="Priority 4">Priority 4</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select className="outline-none">
+                <SelectTrigger className="w-[110px] outline-none">
+                  <SelectValue placeholder="Assign" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Assign to partner">
+                    Assign to partner
+                  </SelectItem>
+                  <SelectItem value="Assign someone else">
+                    Assign someone else
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -134,9 +174,7 @@ const TodoList = () => {
           className="flex flex-row gap-3 items-center cursor-pointer text-gray-500 hover:text-red-500"
           onClick={() => setViewInputBox(true)}
         >
-          <div className="text-3xl text-red-500 hover:border px-2 hover:rounded-full hover:bg-red-500 hover:text-white">
-            +
-          </div>
+          <div className="text-3xl text-red-500 mb-1">+</div>
           <div className="text-xl">Add task</div>
         </div>
       )}

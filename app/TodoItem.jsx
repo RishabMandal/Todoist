@@ -6,8 +6,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { format } from "date-fns";
 import { CalendarForm } from "./CalendarForm";
+import { Button } from "@/components/ui/button";
 
 const TodoItem = ({
   todo,
@@ -22,6 +23,11 @@ const TodoItem = ({
   inputDescription,
   setInputDescription,
   setEditIndex,
+  priority,
+  setPriority,
+  setAssignment,
+  selectedDate,
+  setSelectedDate,
 }) => {
   return (
     <li key={index} className="">
@@ -43,16 +49,39 @@ const TodoItem = ({
               onChange={(e) => setInputDescription(e.target.value)}
             ></textarea>
             <div className="flex flex-row py-2 gap-2">
-              <CalendarForm />
-              <Select className="outline-none">
+              <CalendarForm
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+              />
+              <Select
+                className="outline-none"
+                onValueChange={(value) => setPriority(value)}
+                defaultValue={todo.priority}
+              >
                 <SelectTrigger className="w-[110px] outline-none">
                   <SelectValue placeholder="Priority" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="light">Priority 1</SelectItem>
-                  <SelectItem value="dark">Priority 2</SelectItem>
-                  <SelectItem value="dark2">Priority 3</SelectItem>
-                  <SelectItem value="system">Priority 4</SelectItem>
+                  <SelectItem value="Priority 1">Priority 1</SelectItem>
+                  <SelectItem value="Priority 2">Priority 2</SelectItem>
+                  <SelectItem value="Priority 3">Priority 3</SelectItem>
+                  <SelectItem value="Priority 4">Priority 4</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select
+                className="outline-none"
+                onValueChange={(value) => setAssignment(value)}
+              >
+                <SelectTrigger className="w-[110px] outline-none">
+                  <SelectValue placeholder="Assign" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Assign to partner">
+                    Assign to partner
+                  </SelectItem>
+                  <SelectItem value="Assign someone else">
+                    Assign someone else
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -74,9 +103,36 @@ const TodoItem = ({
           </div>
         ) : (
           <div className="flex flex-row justify-between">
-            <div>
-              <h3 className="text-lg font-semibold">{todo.title}</h3>
-              <p className="text-gray-500">{todo.description}</p>
+            <div className="flex flex-row gap-3">
+              <div
+                className={`${
+                  todo.priority == "Priority 1"
+                    ? "ring-red-500"
+                    : todo.priority == "Priority 2"
+                    ? "ring-orange-500"
+                    : todo.priority == "Priority 3"
+                    ? "ring-blue-500"
+                    : "ring-gray-400"
+                } mt-1 h-fit border ring-2 rounded-full p-2`}
+              ></div>
+              <div>
+                <h3 className="text-lg font-semibold">{todo.title}</h3>
+                <p className="text-gray-500">{todo.description}</p>
+                <p className="text-gray-500 mt-2">
+                  <Button
+                    variant={"outline"}
+                    className={`w-[240px] pl-3 text-left font-normal ${
+                      !todo.date && "text-muted-foreground"
+                    }`}
+                  >
+                    {todo.date ? (
+                      format(todo.date, "PPP")
+                    ) : (
+                      <span>Pick a date</span>
+                    )}
+                  </Button>
+                </p>
+              </div>
             </div>
             <div>
               <button
