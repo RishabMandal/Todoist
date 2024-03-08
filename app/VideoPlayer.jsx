@@ -1,17 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import YouTubePlayer from "./YoutubePlayer";
 
 const VideoPlayer = ({ video }) => {
+  const [currentTime, setCurrentTime] = useState(0);
   return (
     <div>
+      <div>Current Prgoress Time: {currentTime}</div>
       {video ? (
         <div className="relative">
           <div className="w-full aspect-w-16 aspect-h-9">
-            <iframe
-              className="absolute top-0 left-0 w-[90vw] h-[90vh] rounded-xl"
-              src={video.videoUrl}
-              title={video.title}
-              allowFullScreen
-            ></iframe>
+            <YouTubePlayer
+              videoURL={video.videoUrl}
+              setCurrentTime={setCurrentTime}
+            />
           </div>
         </div>
       ) : (

@@ -11,7 +11,7 @@ const VideoList = () => {
       title: "Introduction to React",
       description: "Learn the basics of React.js",
       thumbnailUrl: "https://via.placeholder.com/300",
-      videoUrl: "https://www.youtube.com/embed/7GvqISUfWVA",
+      videoUrl: "https://www.youtube.com/watch?v=eXbVpXvkKsg",
       category: "Programming",
       author: {
         name: "John Doe",
