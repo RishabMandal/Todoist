@@ -7,7 +7,7 @@ const VideoPlayer = ({ video }) => {
   const [currentTime, setCurrentTime] = useState(0);
   return (
     <div>
-      <div>Current Prgoress Time: {currentTime}</div>
+      <div>Current Prgoress Time: {currentTime} seconds</div>
       {video ? (
         <div className="relative">
           <div className="w-full aspect-w-16 aspect-h-9">

@@ -44,9 +44,8 @@ const YouTubePlayer = ({ videoURL, setCurrentTime }) => {
   const onPlayerStateChange = (event) => {
     if (event.data === window.YT.PlayerState.PLAYING) {
       setInterval(() => {
-        console.log("Current time: ", event.target.getCurrentTime());
         setCurrentTime(event.target.getCurrentTime());
-      }, 1000); // Log current time every second
+      }, 1000); // Set current time every second
     }
   };
 
