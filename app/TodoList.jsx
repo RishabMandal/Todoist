@@ -124,14 +124,12 @@ const TodoList = () => {
               type="text"
               className="outline-none p-2 pb-0 w-full font-semibold"
               placeholder="Task name"
-              // value={inputTitle}
               onChange={(e) => setInputTitle(e.target.value)}
             />
             <textarea
               className="outline-none p-2 w-full text-sm"
               rows="1"
               placeholder="Description"
-              // value={inputDescription}
               onChange={(e) => setInputDescription(e.target.value)}
             ></textarea>
             <div className="flex flex-row py-2 gap-2">
@@ -186,7 +184,6 @@ const TodoList = () => {
                     <input
                       type="email"
                       id="email"
-                      // value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter email"
                       className="border border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:border-blue-500"

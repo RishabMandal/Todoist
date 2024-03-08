@@ -204,8 +204,10 @@ const TodoItem = ({
         ) : (
           <div className="flex flex-row justify-between">
             <div className="flex flex-row gap-3">
-              <div
-                className={`${
+              <input
+                type="checkbox"
+                // onChange={() => alert("Click")}
+                className={`appearance-none ${
                   todo.priority == "Priority 1"
                     ? "ring-red-500"
                     : todo.priority == "Priority 2"
@@ -213,8 +215,8 @@ const TodoItem = ({
                     : todo.priority == "Priority 3"
                     ? "ring-blue-500"
                     : "ring-gray-400"
-                } mt-1 h-fit border ring-2 rounded-full p-2`}
-              ></div>
+                } mt-1 h-fit border ring-2 rounded-full p-2 cursor-pointer`}
+              />
               <div>
                 <h3 className="text-lg font-semibold">{todo.title}</h3>
                 <p className="text-gray-500">{todo.description}</p>
@@ -226,7 +228,9 @@ const TodoItem = ({
                       <span>Pick a date</span>
                     )}
                   </p>
-                  <p className="text-gray-500 mt-2">{todo.assignment}</p>
+                  {todo.assignment !== "Assign" && (
+                    <p className="text-gray-500 mt-2">{todo.assignment}</p>
+                  )}
                 </div>
               </div>
             </div>
