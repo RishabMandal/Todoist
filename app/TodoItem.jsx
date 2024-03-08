@@ -225,7 +225,7 @@ const TodoItem = ({
                     {todo.date ? (
                       format(todo.date, "PPP")
                     ) : (
-                      <span>Pick a date</span>
+                      <span>No date picked</span>
                     )}
                   </p>
                   {todo.assignment !== "Assign" && (
