@@ -43,6 +43,7 @@ const TodoList = () => {
       setSelectedDate(null); // Reset selected date after adding todo
       setAssignment(null); // Reset assignment
       setEmail(null);
+      setViewInputBox(false);
     }
   };
 
@@ -127,7 +128,7 @@ const TodoList = () => {
               onChange={(e) => setInputTitle(e.target.value)}
             />
             <textarea
-              className="outline-none p-2 mb-4 w-full text-sm"
+              className="outline-none p-2 w-full text-sm"
               rows="1"
               placeholder="Description"
               // value={inputDescription}
