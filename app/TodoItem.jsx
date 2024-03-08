@@ -168,7 +168,8 @@ const TodoItem = ({
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                {todo.assignment === "Assign someone else" && (
+                {/* {todo.assignment === "Assign someone else" && ( */}
+                {assignment === "Assign someone else" && (
                   <div className="mt-2">
                     <label htmlFor="email" className="block mb-1">
                       Email:

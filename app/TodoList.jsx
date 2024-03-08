@@ -39,9 +39,9 @@ const TodoList = () => {
       ]);
       setInputTitle("");
       setInputDescription("");
-      setPriority(null); // Reset priority after adding todo
+      setPriority("Priority 4"); // Reset priority after adding todo
       setSelectedDate(null); // Reset selected date after adding todo
-      setAssignment(null); // Reset assignment
+      setAssignment("Assign"); // Reset assignment
       setEmail(null);
       setViewInputBox(false);
     }
@@ -74,9 +74,9 @@ const TodoList = () => {
       setTodos(updatedTodos);
       setInputTitle("");
       setInputDescription("");
-      setPriority(null); // Reset priority after adding todo
+      setPriority("Priority 4"); // Reset priority after adding todo
       setSelectedDate(null); // Reset selected date after adding todo
-      setAssignment(null); // Reset assignment
+      setAssignment("Assign"); // Reset assignment
       setEmail(null); // Reset assignment
       setEditIndex(null);
     }
@@ -194,20 +194,18 @@ const TodoList = () => {
             </div>
           </div>
           <div className="flex flex-row justify-end pt-3">
-            <div>
-              <button
-                className="bg-gray-200 font-semibold px-4 py-2 rounded mr-2"
-                onClick={() => setViewInputBox(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-red-500 font-semibold text-white px-4 py-2 rounded mr-2"
-                onClick={handleAddTodo}
-              >
-                Add Task
-              </button>
-            </div>
+            <button
+              className="bg-gray-200 font-semibold px-4 py-2 rounded mr-2"
+              onClick={() => setViewInputBox(false)}
+            >
+              Cancel
+            </button>
+            <button
+              className="bg-red-500 font-semibold text-white px-4 py-2 rounded mr-2"
+              onClick={handleAddTodo}
+            >
+              Add Task
+            </button>
           </div>
         </div>
       ) : (
