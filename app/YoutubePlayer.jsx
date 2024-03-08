@@ -16,8 +16,8 @@ const YouTubePlayer = ({ videoURL, setCurrentTime }) => {
 
     const onYouTubeIframeAPIReady = () => {
       new YT.Player(playerRef.current, {
-        height: "315",
-        width: "560",
+        height: "100%",
+        width: "100%",
         videoId: videoId,
         events: {
           onReady: onPlayerReady,

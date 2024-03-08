@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoCard = ({ video, setCurrentVideo }) => {
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-lg">
       <div className="md:flex" onClick={() => setCurrentVideo(video)}>
         <div className="md:flex-shrink-0">
           <img
