@@ -142,14 +142,89 @@ const TodoList = () => {
                 onValueChange={(value) => setPriority(value)}
                 defaultValue="Priority 4"
               >
-                <SelectTrigger className="w-[110px] outline-none">
+                <SelectTrigger className="w-[150px] outline-none">
                   <SelectValue placeholder="Priority" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Priority 1">Priority 1</SelectItem>
-                  <SelectItem value="Priority 2">Priority 2</SelectItem>
-                  <SelectItem value="Priority 3">Priority 3</SelectItem>
-                  <SelectItem value="Priority 4">Priority 4</SelectItem>
+                  <SelectItem value="Priority 1">
+                    <div className="flex flex-row gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        // fill="none"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-flag stroke-red-500 fill-red-500"
+                      >
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                        <line x1="4" x2="4" y1="22" y2="15" />
+                      </svg>
+                      <div>Priority 1</div>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="Priority 2">
+                    <div className="flex flex-row gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-flag stroke-orange-500 fill-orange-500"
+                      >
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                        <line x1="4" x2="4" y1="22" y2="15" />
+                      </svg>
+                      <div>Priority 2</div>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="Priority 3">
+                    <div className="flex flex-row gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-flag stroke-blue-500 fill-blue-500"
+                      >
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                        <line x1="4" x2="4" y1="22" y2="15" />
+                      </svg>
+                      <div>Priority 3</div>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="Priority 4">
+                    <div className="flex flex-row gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-flag"
+                      >
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                        <line x1="4" x2="4" y1="22" y2="15" />
+                      </svg>
+                      <div>Priority 4</div>
+                    </div>
+                  </SelectItem>
                 </SelectContent>
               </Select>
               <div>
