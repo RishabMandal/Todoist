@@ -1,3 +1,5 @@
+// "use client";
+
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
@@ -7,7 +9,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useEffect } from "react";
 
 export function CalendarForm({ selectedDate, setSelectedDate }) {
   return (

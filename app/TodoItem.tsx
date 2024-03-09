@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/select";
 import { format } from "date-fns";
 import { CalendarForm } from "./CalendarForm";
+import { Checkbox } from "./Checkbox";
 
 const TodoItem = ({
   todo,
@@ -204,8 +205,8 @@ const TodoItem = ({
           </div>
         ) : (
           <div className="flex flex-row justify-between">
-            <div className="flex flex-row gap-3">
-              <input
+            <div className="flex flex-row gap-3 items-start">
+              {/* <input
                 type="checkbox"
                 // onChange={() => alert("Click")}
                 className={`appearance-none ${
@@ -217,17 +218,26 @@ const TodoItem = ({
                     ? "ring-blue-500"
                     : "ring-gray-400"
                 } mt-1 h-fit border ring-2 rounded-full p-2 cursor-pointer`}
+              /> */}
+              <Checkbox
+                // checkboxColor={
+                //   todo.priority === "Priority 1"
+                //     ? "red-500"
+                //     : todo.priority === "Priority 2"
+                //     ? "orange-500"
+                //     : todo.priority === "Priority 3"
+                //     ? "blue-500"
+                //     : "gray-400"
+                // }
+                priority={todo.priority}
+                // checked={true}
               />
               <div>
                 <h3 className="text-lg font-semibold">{todo.title}</h3>
                 <p className="text-gray-500">{todo.description}</p>
                 <div className="flex flow-row gap-5">
                   <p className="text-gray-500 mt-2">
-                    {todo.date ? (
-                      format(todo.date, "PPP")
-                    ) : (
-                      <span>No date picked</span>
-                    )}
+                    {todo.date && format(todo.date, "PPP")}
                   </p>
                   {todo.assignment !== "Assign" && (
                     <p className="text-gray-500 mt-2">{todo.assignment}</p>
