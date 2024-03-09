@@ -10,7 +10,7 @@ const VideoPlayer = ({ video }) => {
       {video && <div>Current Progress Time: {currentTime} seconds</div>}
       {video && (
         <div className="relative">
-          <div className="w-full h-[55vh]">
+          <div className="w-full h-[75vh]">
             <YouTubePlayer
               videoURL={video.videoUrl}
               setCurrentTime={setCurrentTime}

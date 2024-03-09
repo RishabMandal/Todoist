@@ -98,7 +98,7 @@ const VideoList = () => {
     <div className="p-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
         {currentVideo && (
-          <div className="inline col-span-2">
+          <div className="inline col-span-2 row-span-2">
             <VideoPlayer key={currentVideo?.id} video={currentVideo} />
           </div>
         )}
